@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      th:fragment="index">
+<head>
+    <meta charset="UTF-8"></meta>
+    <link rel="shortcut icon" type="image/png" th:href="@{/icon.png}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/jquery-ui.min.css}" />
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/jquery-ui.min.js}"></script>
+    <script th:src="@{/js/script.js}"></script>
+    <title>Event Journaling</title>
+</head>
+<body>
+    <div>
+        <h1>Event Journaling</h1>
+    </div>
+    <div>
+        <a>choose how events have to be generated</a>
+        <div id="slider"></div> <label id="sliderLabel">0</label>
+        <div id="sliderInfo">
+        <button type="button" id="generateButton">
+            <a>generate</a>
+        </button>
+        </div>
+    </div>
+    <div>
+        <a>events that occur </a>
+        <input type="radio" id="timeMeasure" name="timeMeasure" value="minute" checked="checked"/>
+        <label for="minute"> in 1 minute</label>
+        <input type="radio" id="timeMeasure" name="timeMeasure" value="hour" />
+        <label for="hour"> in 1 hour</label>
+        <input type="radio" id="timeMeasure" name="timeMeasure" value="day" />
+        <label for="day"> in 1 day</label>
+        <button type="button">
+            <a>show</a>
+        </button>
+        <button type="button" id="clearButton" disabled="disabled">
+            <a>clear</a>
+        </button>
+        <button type="button" id="deleteButton">
+            <a>clear database</a>
+        </button>
+    </div>
+    <div id="eventList" th:if="${events} and ${not #lists.isEmpty(events)}" >
+        <a th:text="${requestMessage}">request message</a>
+        <div>
+            <table>
+              <tr>
+                 <td>id</td>
+                 <td>name</td>
+                 <td>date</td>
+              </tr>
+               <th:block th:each="event : ${events}">
+                  <tr>
+                     <td th:text="${event.id}">...</td>
+                     <td th:text="${event.name}">...</td>
+                     <td th:text="${event.date}">...</td>
+                  </tr>
+               </th:block>
+            </table>
+        </div>
+        <div th:include="this :: events"></div>
+    </div>
+</body>
+</html>

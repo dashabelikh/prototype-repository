@@ -1,0 +1,22 @@
+div {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 25px 0;
+}
+
+div, a, h1 {
+	font-family: consolas;
+}
+
+#slider {
+	margin-top: 3px;
+	width: 150px;
+}
+
+#slider, #sliderInfo {
+	display: inline-block;
+}
