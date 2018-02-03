@@ -24,19 +24,19 @@ public class EventJournalingService implements EventJournaling {
     }
 
     @Override
-    public List<EventDTO> getEventsHappendsInMinute() {
+    public List<EventDTO> getEventsOccurInOneMinute() {
         LocalDateTime earlyDate = LocalDateTime.now().minusMinutes(1L);
         return getEventsAfter(earlyDate);
     }
 
     @Override
-    public List<EventDTO> getEventsHappendsInHour() {
+    public List<EventDTO> getEventsOccurInOneHour() {
         LocalDateTime earlyDate = LocalDateTime.now().minusHours(1L);
         return getEventsAfter(earlyDate);
     }
 
     @Override
-    public List<EventDTO> getEventsHappendsInDay() {
+    public List<EventDTO> getEventsOccurInOneDay() {
         LocalDateTime earlyDate = LocalDateTime.now().minusDays(1L);
         return getEventsAfter(earlyDate);
     }

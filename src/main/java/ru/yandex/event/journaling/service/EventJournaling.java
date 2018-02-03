@@ -9,11 +9,11 @@ public interface EventJournaling {
 
     void journalEvent(long id, String name, LocalDateTime date);
 
-    List<EventDTO> getEventsHappendsInMinute();
+    List<EventDTO> getEventsOccurInOneMinute();
 
-    List<EventDTO> getEventsHappendsInHour();
+    List<EventDTO> getEventsOccurInOneHour();
 
-    List<EventDTO> getEventsHappendsInDay();
+    List<EventDTO> getEventsOccurInOneDay();
 
     List<EventDTO> getEventsAfter(LocalDateTime earlyDate);
 

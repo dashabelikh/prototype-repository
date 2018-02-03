@@ -28,28 +28,6 @@ public class EventRestController {
         return new ResponseEntity<List<EventDTO>>(entities, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/show", method = RequestMethod.POST)
-    public ResponseEntity<List<EventDTO>> show(String period) {
-        switch (period) {
-        case "minute":
-            new ResponseEntity<List<EventDTO>>(
-                    journaling.getEventsHappendsInMinute(),
-                    HttpStatus.OK
-            );
-        case "hour":
-            new ResponseEntity<List<EventDTO>>(
-                    journaling.getEventsHappendsInHour(),
-                    HttpStatus.OK
-            );
-        case "day":
-            new ResponseEntity<List<EventDTO>>(
-                    journaling.getEventsHappendsInDay(),
-                    HttpStatus.OK
-            );
-        }
-        return new ResponseEntity<List<EventDTO>>(HttpStatus.NOT_FOUND);
-    }
-
     @RequestMapping(value = "/delete/all", method = RequestMethod.POST)
     public ResponseEntity<String> deleteAll() {
         journaling.deleteAllEventsFromRepository();
