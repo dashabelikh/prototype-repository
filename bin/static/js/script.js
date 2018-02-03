@@ -30,3 +30,8 @@ $(document).on("click", "#deleteButton", function(){
         }
       });
 });
+
+$(document).on("click", "#showButton", function(){
+    var url = window.location.host + '?time=' + $("#timeMeasure:checked").val();
+    window.location.href = url;
+});
