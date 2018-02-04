@@ -9,4 +9,4 @@ public interface EventRepository {
     List<Event> findAll();
 
     void deleteAll();
-  }
+}

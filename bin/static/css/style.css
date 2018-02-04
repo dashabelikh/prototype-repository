@@ -4,11 +4,11 @@ div {
 }
 
 table {
-  border-collapse: separate;
-  border-spacing: 25px 0;
+	border-collapse: separate;
+	border-spacing: 25px 0;
 }
 
-div, a, h1 {
+div, a, button, h1 {
 	font-family: consolas;
 }
 
@@ -17,6 +17,6 @@ div, a, h1 {
 	width: 150px;
 }
 
-#slider, #sliderInfo {
+#slider, #sliderInfo, form {
 	display: inline-block;
 }

@@ -6,9 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import ru.yandex.event.journaling.dto.EventDTO;
 import ru.yandex.event.journaling.service.EventJournaling;
@@ -26,12 +26,17 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, params = "time")
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String showErrorPage(Model model) {
+        return "error";
+    }
+
+    @RequestMapping(value = "/get/in/{time}", method = RequestMethod.GET)
     public String showEventsOccurInOneMinute(
-            @RequestParam("time") String time,
+            @PathVariable("time") String time,
             Model model
     ) {
-        List<EventDTO> events;
+        List<EventDTO> events = new ArrayList<>();
         switch (time) {
         case "minute":
             events = journaling.getEventsOccurInOneMinute();
@@ -43,7 +48,7 @@ public class HomeController {
             events = journaling.getEventsOccurInOneDay();
             break;
         default:
-            events = new ArrayList<>();
+            break;
         }
         model.addAttribute("requestMessage", "all events in 1 " + time);
         model.addAttribute("events", events);

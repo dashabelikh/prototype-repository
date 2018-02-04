@@ -22,16 +22,11 @@ $(document).on("click", "#generateButton", function(){
 });
 
 $(document).on("click", "#deleteButton", function(){
-    $.ajax({
+    $.ajax({    
         type: "POST",
         url: '/delete/all',
         success: function (data, textStatus) {
             window.location.reload();
         }
       });
-});
-
-$(document).on("click", "#showButton", function(){
-    var url = window.location.host + '?time=' + $("#timeMeasure:checked").val();
-    window.location.href = url;
 });

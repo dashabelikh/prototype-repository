@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
-      xmlns="http://www.w3.org/1999/xhtml"
-      th:fragment="index">
+      xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"></meta>
     <link rel="shortcut icon" type="image/png" th:href="@{/icon.png}" />
@@ -20,28 +19,20 @@
         <a>choose how events have to be generated</a>
         <div id="slider"></div> <label id="sliderLabel">0</label>
         <div id="sliderInfo">
-        <button type="button" id="generateButton">
-            <a>generate</a>
-        </button>
+            <button type="button" id="generateButton" th:text="generate"></button>
         </div>
     </div>
     <div>
         <a>events that occur </a>
-        <input type="radio" id="timeMeasure" name="timeMeasure" value="minute" checked="checked"/>
-        <label for="minute"> in 1 minute</label>
-        <input type="radio" id="timeMeasure" name="timeMeasure" value="hour" />
-        <label for="hour"> in 1 hour</label>
-        <input type="radio" id="timeMeasure" name="timeMeasure" value="day" />
-        <label for="day"> in 1 day</label>
-        <button type="button" id="showButton">
-            <a>show</a>
-        </button>
-        <button type="button" id="clearButton" disabled="disabled">
-            <a>clear</a>
-        </button>
-        <button type="button" id="deleteButton">
-            <a>clear database</a>
-        </button>
+        <a th:href="@{'/get/in/minute'}">in 1 minute</a>
+        <label>or</label>
+        <a th:href="@{'/get/in/hour'}">in 1 hour</a>
+        <label>or</label>
+        <a th:href="@{'/get/in/day'}">in 1 day</a>
+        <form th:action="@{/}" method="get">
+            <button type="submit" id="showButton" th:text="'show'+' '+'all'"></button>
+        </form>
+        <button type="button" id="deleteButton" th:text="'clear'+' '+'database'"></button>
     </div>
     <div id="eventList" th:if="${events} and ${not #lists.isEmpty(events)}" >
         <a th:text="${requestMessage}">request message</a>
@@ -52,16 +43,13 @@
                  <td>name</td>
                  <td>date</td>
               </tr>
-               <th:block th:each="event : ${events}">
-                  <tr>
-                     <td th:text="${event.id}">...</td>
-                     <td th:text="${event.name}">...</td>
-                     <td th:text="${event.date}">...</td>
-                  </tr>
-               </th:block>
+              <tr th:each="event : ${events}">
+                 <td th:text="${event.id}">...</td>
+                 <td th:text="${event.name}">...</td>
+                 <td th:text="${event.date}">...</td>
+              </tr>
             </table>
         </div>
-        <div th:include="this :: events"></div>
     </div>
 </body>
 </html>
